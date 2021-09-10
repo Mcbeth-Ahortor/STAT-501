@@ -1,0 +1,144 @@
+---
+title: "STAT 501 R HW1"
+author: "McBeth Ahortor"
+date: "9/4/2021"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Rmisc)
+library(pastecs)
+library(VIM)
+```
+
+## Problems Using R (Q.1.)
+
+## Generating a random sample of size 24 from a normal distribution with mean = 21 and sd = 3 and then adding a 25th observation of 52.2
+
+```{r, echo=T}
+set.seed(3)
+x <- rnorm(24, mean = 21, sd = 3)
+x
+y <- c(x,52.2)
+y
+# Concatenating 52.2 to the 24 random sample
+hist(y, freq = FALSE, nclass = 20, col = "yellow", xlab = "Random numbers", main = "Histogram of 25 Random Numbers")
+
+```
+
+## a. Mean and standard deviation of the 25 random numbers
+
+
+```{r, echo=T}
+u <- mean(y)
+u
+#mean
+s <- sd(y)
+#Standard deviation
+s
+```
+
+## b. Intervals 
+For k=1,
+```{r, echo=T}
+k1 <- c(u-1*s,u+1*s)
+
+k1
+
+```
+For k=2,
+```{r, echo=T}
+k2 <- c(u-2*s,u+2*s)
+k2
+
+```
+For k=3,
+```{r, echo=T}
+k3 <- c(u-3*s,u+3*s)
+k3
+
+```
+## C. Counting the number of measurements
+
+```{r, echo=T}
+t1 <-print( sum(u-1*s< y&y < u+1*s))
+t2 <-print( sum(u-2*s< y&y < u+2*s))
+t3 <-print( sum(u-3*s< y&y < u+3*s))
+
+print("24 measurements fell in the intervals k1, k2 and k3")
+
+```
+
+For the empirical rule,
+
+```{r, echo=T}
+25*(0.68) # We expect 68% of the measurements to fall within the interval
+25*(0.95) # We expect 95% of the measurements to fall within the interval
+25*(1) # We expect almost all of the measurements to fall within the interval
+```
+
+
+## d. Range
+Finding the range for the 25 random sample,
+```{r, echo=T}
+r <- range(y)
+R <-diff(r)
+R
+print('The range = 36.19942')
+
+```
+
+
+Per empirical rule, the standard deviation can be approximated as range/4
+```{r, echo=T}
+sbar = R/4
+sbar
+print('The approximated standard error = 9.049856')
+
+```
+
+
+## e. Removing the outlier
+```{r, echo=T}
+Y <- y[-25]
+Y
+
+# Calculating the mean and standard deviation without the outlier;
+ybar <-mean(Y)
+S <- sd(Y)
+
+print('The mean = 20.15815 and the standard deviation = 2.368674')
+
+```
+Yes, there is a wide difference in the two standard deviations and the two means. the disparity is as a result of the outlier.
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
